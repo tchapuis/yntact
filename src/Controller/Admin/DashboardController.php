@@ -7,6 +7,7 @@ use App\Entity\Category;
 use App\Entity\Client;
 use App\Entity\Group;
 use App\Entity\Item;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -33,14 +34,17 @@ class DashboardController extends AbstractDashboardController
     {
         return [
             MenuItem::linktoDashboard('Dashboard', 'fa fa-home'),
-            MenuItem::section(),
-            MenuItem::linkToCrud('Client', null, Client::class),
-            MenuItem::linkToCrud('Group', null, Group::class),
-            MenuItem::section(),
-            MenuItem::linkToCrud('Item', null, Item::class),
-            MenuItem::linkToCrud('Category', null, Category::class),
-            MenuItem::section(),
-            MenuItem::linkToCrud('Attribution', null, Attribution::class),
+            MenuItem::section('Clients'),
+            MenuItem::linkToCrud('Client', 'fas fa-user', Client::class),
+            MenuItem::linkToCrud('Group', 'fas fa-users', Group::class),
+            MenuItem::section('Items'),
+            MenuItem::linkToCrud('Item', 'fas fa-hdd', Item::class),
+            MenuItem::linkToCrud('Category', 'fas fa-folder', Category::class),
+            MenuItem::section('Attributions'),
+            MenuItem::linkToCrud('Attribution', 'fas fa-user-tag', Attribution::class),
+            MenuItem::section('Admins'),
+            MenuItem::linkToCrud('Users', 'fas fa-user-secret', User::class)
+                ->setPermission('ROLE_SUPER_ADMIN'),
         ];
     }
 }

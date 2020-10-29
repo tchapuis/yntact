@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AttributionRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AttributionRepository::class)
@@ -30,12 +31,13 @@ class Attribution
     private $item;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $start;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(type="date", nullable=true)
+     * @Assert\GreaterThan(propertyPath="start")
      */
     private $end;
 

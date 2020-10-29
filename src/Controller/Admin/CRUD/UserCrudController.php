@@ -2,17 +2,17 @@
 
 namespace App\Controller\Admin\CRUD;
 
-use App\Entity\Group;
+use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class GroupCrudController extends AbstractCrudController
+class UserCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Group::class;
+        return User::class;
     }
 
 
@@ -20,8 +20,8 @@ class GroupCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('title'),
-            AssociationField::new('clients')->hideOnForm(),
+            EmailField::new('email'),
+            ArrayField::new('roles')
         ];
     }
 

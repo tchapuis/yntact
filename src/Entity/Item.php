@@ -6,9 +6,11 @@ use App\Repository\ItemRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ItemRepository::class)
+ * @UniqueEntity("reference")
  */
 class Item
 {
@@ -48,6 +50,11 @@ class Item
     public function __construct()
     {
         $this->attributions = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->title . ' - ' . $this->reference;
     }
 
     public function getId(): ?int
